@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Higher or Lower</title>
+
+		<style>
+			noscript {
+				width: 100vw;
+				height: 100vh;
+				position: absolute;
+				background-color: #333;
+				color: #fff;
+				font-size: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+
+		<link rel="stylesheet" href="global.css" />
+		<link rel="stylesheet" href="main.css" />
+		<link rel="stylesheet" href="animations.css" />
+
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+	</head>
+	<body class="darkmode">
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div class="modal" style="display: none">
+			<div class="modal-box">
+				<div class="btn-close">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+						<path d="M0 0h24v24H0V0z" fill="none" />
+						<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+					</svg>
+				</div>
+				<div class="modal-content modal-info">
+					<h2 class="modal-title">How to play</h2>
+					<div class="modal-text">
+						<ol>
+							<li>Reveal any number.</li>
+							<li>Guess if the next number is higher or lower.</li>
+							<li>Repeat until all numbers are revealed.</li>
+						</ol>
+						<ul>
+							<li>The numbers go from 1 to 16.</li>
+							<li>Each number appears only once.</li>
+							<li>You have 3 lives.</li>
+						</ul>
+						<span class="credits">Game by <a href="https://twitter.com/Fnugz" target="_blank">Fnugz</a> and <a href="https://twitter.com/RizzToTheIzzle" target="_blank">RZL</a></span>
+					</div>
+				</div>
+				<div class="modal-content modal-stats">
+					<h2 class="modal-title">Statistics</h2>
+					<div class="modal-text">Win% = 100% 👍</div>
+				</div>
+				<div class="modal-content modal-settings">
+					<h2 class="modal-title">Settings</h2>
+					<div class="modal-text">
+						<span class="settings-darkmode">Toggle darkmode</span>
+						<span>Enable cheat ☑</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="game">
+			<header>Higher or Lower</header>
+			<div class="board-container">
+				<div class="board">
+					<div class="center"></div>
+					<div class="sums cols"></div>
+					<div class="sums rows"></div>
+				</div>
+				<footer>
+					<div class="lives"></div>
+					<div class="menu">
+						<div class="btn-restart">
+							<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+								<path d="M12,5V1L7,6l5,5V7c3.31,0,6,2.69,6,6s-2.69,6-6,6s-6-2.69-6-6H4c0,4.42,3.58,8,8,8s8-3.58,8-8S16.42,5,12,5z" />
+							</svg>
+						</div>
+						<div class="btn-info">
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+								<path d="M0 0h24v24H0V0z" fill="none" />
+								<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+							</svg>
+						</div>
+						<div class="btn-stats">
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+								<path d="M0 0h24v24H0V0z" fill="none" />
+								<path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z" />
+							</svg>
+						</div>
+						<div class="btn-settings">
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+								<path d="M0 0h24v24H0V0z" fill="none" />
+								<path
+									d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+								/>
+							</svg>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="game.js"></script>
+	</body>
+</html>
