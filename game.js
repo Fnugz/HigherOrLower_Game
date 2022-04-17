@@ -120,12 +120,14 @@ $(document).on("click", ".center.first-pick .card", function () {
 
 // Hover arrows
 $(document).on("mouseenter", ".center:not(.first-pick) .card div", function () {
-	var card = $(this).closest(".card");
+	if (!gameover) {
+		var card = $(this).closest(".card");
 
-	if ($(this).hasClass("higher")) {
-		card.find("span").text("HIGHER");
-	} else if ($(this).hasClass("lower")) {
-		card.find("span").text("LOWER");
+		if ($(this).hasClass("higher")) {
+			card.find("span").text("HIGHER");
+		} else if ($(this).hasClass("lower")) {
+			card.find("span").text("LOWER");
+		}
 	}
 });
 $(document).on("mouseleave", ".center:not(.first-pick) .card div", function () {

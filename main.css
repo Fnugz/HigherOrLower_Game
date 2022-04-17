@@ -327,6 +327,15 @@ header {
 .center.first-pick .card:hover:after {
 	background-color: var(--blue);
 }
+
+@media (max-width: 450px) {
+	.card {
+		font-size: 10px;
+	}
+	.card.flipped {
+		font-size: 36px;
+	}
+}
 /* #endregion */
 
 /* #region Footer */
@@ -336,17 +345,16 @@ footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 20px;
+	gap: 10px;
 	padding: 10px 50px;
 	box-sizing: border-box;
 }
 
 @media (max-width: 450px) {
 	footer {
-		flex-direction: column;
+		padding: 10px 0;
 	}
 }
-/* #endregion */
 
 /* #region Lives */
 .lives {
@@ -418,4 +426,14 @@ footer {
 .menu .btn-restart.spin svg {
 	animation-name: restartSpin;
 }
+
+@media (max-width: 450px) {
+	.life,
+	.menu div {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+/* #endregion */
 /* #endregion */
