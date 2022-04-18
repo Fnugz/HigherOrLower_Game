@@ -6,10 +6,6 @@ var gameover;
 var current_number = 0;
 var cooldown = false;
 
-var userprefs = {
-	// darkmode: true,
-};
-
 var settings = {
 	width: 4,
 	height: 4,
@@ -18,20 +14,15 @@ var settings = {
 	show_pool: false,
 };
 
-if (window.matchMedia && !window.matchMedia("(prefers-color-scheme: dark)").matches) {
-	// light mode
-	userprefs.darkmode = false;
-	$("body").removeClass("darkmode");
-} else {
-	// dark mode
-	userprefs.darkmode = true;
-	$("body").addClass("darkmode");
-}
+var userprefs = loadUserprefs();
+var stats = loadStats();
 
 $(document).ready(function () {
+	applyDarkmode();
 	newGame();
 });
 
+// New game
 function newGame(seed = Math.random()) {
 	cards_total = settings.width * settings.height;
 	var numbers_highest = cards_total + settings.extra_pool;
@@ -186,19 +177,35 @@ $(document).on("click", ".center:not(.first-pick) .card:not(.flipped) div", func
 		});
 		flipCard(card);
 
-		// Lose + Win
 		if (gameover) {
+			// Lose
 			setTimeout(function () {
 				openModal();
+				$(".btn-stats").trigger("click");
 				$(".modal-stats .modal-title").text("You lost!");
-				$(".modal-stats").show();
 			}, 1000);
+
+			stats.games++;
+			stats.streak = 0;
+			saveStats();
 		} else if (cards_left <= 0) {
+			// Win
 			setTimeout(function () {
 				openModal();
+				$(".btn-stats").trigger("click");
 				$(".modal-stats .modal-title").text("You won!");
-				$(".modal-stats").show();
 			}, 1000);
+
+			stats.games++;
+			stats.wins++;
+			stats.streak++;
+			if (stats.streak > stats.bestStreak) {
+				stats.bestStreak++;
+			}
+			if (lives_left == settings.lives) {
+				stats.perfectGames++;
+			}
+			saveStats();
 		}
 	}
 });
@@ -308,7 +315,6 @@ function random(seed) {
 }
 
 // Modal
-
 function openModal() {
 	$(".modal-content").hide();
 	$(".modal").show();
@@ -317,41 +323,94 @@ function closeModal() {
 	$(".modal").hide();
 }
 
-// Modal - Open
+// Modal - Open events
 $(document).on("click", ".btn-info", function () {
 	openModal();
 	$(".modal-info").show();
 });
-
 $(document).on("click", ".btn-stats", function () {
 	openModal();
 	$(".modal-stats .modal-title").text("Statistics");
+	$(".modal-stats .stats-games").text(stats.games);
+	$(".modal-stats .stats-wins").text(stats.wins);
+	$(".modal-stats .stats-winpct").text(((stats.wins / stats.games) * 100).toFixed(1) + "%");
+	$(".modal-stats .stats-perfectgames").text(stats.perfectGames);
+	$(".modal-stats .stats-streak").text(stats.streak);
+	$(".modal-stats .stats-beststreak").text(stats.bestStreak);
+
 	$(".modal-stats").show();
 });
-
 $(document).on("click", ".btn-settings", function () {
 	openModal();
 	$(".modal-settings").show();
 });
 
-// Modal - Close
+// Modal - Close events
 $(document).on("click", ".modal .btn-close", function (e) {
 	closeModal();
 });
-
 $(document).on("click", ".modal", function (e) {
 	if (e.target != this) return;
 	closeModal();
 });
-
 $(document).on("keydown", function (e) {
 	if (e.key == "Escape") {
 		closeModal();
 	}
 });
 
-// Settings
+// localStorage
+function loadUserprefs() {
+	var p = {};
+	if (localStorage.userprefs !== undefined) {
+		p = JSON.parse(localStorage.userprefs);
+	}
 
-$(document).on("click", ".settings-darkmode", function () {
-	$("body").toggleClass("darkmode");
+	if (!p.hasOwnProperty("darkmode")) {
+		if (window.matchMedia && !window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			p.darkmode = false;
+		} else {
+			p.darkmode = true;
+		}
+	}
+
+	return p;
+}
+function saveUserprefs() {
+	localStorage.userprefs = JSON.stringify(userprefs);
+}
+
+function loadStats() {
+	var s = {};
+	if (localStorage.stats !== undefined) {
+		s = JSON.parse(localStorage.stats);
+	}
+
+	s.games = s.games || 0;
+	s.wins = s.wins || 0;
+	s.perfectGames = s.perfectGames || 0;
+	s.streak = s.streak || 0;
+	s.bestStreak = s.bestStreak || 0;
+
+	return s;
+}
+function saveStats() {
+	localStorage.stats = JSON.stringify(stats);
+}
+
+// Settings menu
+$(document).on("change", "#settings-darkmode", function () {
+	userprefs.darkmode = this.checked;
+	saveUserprefs();
+	applyDarkmode();
 });
+
+function applyDarkmode() {
+	if (userprefs.darkmode) {
+		$("body").addClass("darkmode");
+		$("#settings-darkmode").prop("checked", true);
+	} else {
+		$("body").removeClass("darkmode");
+		$("#settings-darkmode").prop("checked", false);
+	}
+}

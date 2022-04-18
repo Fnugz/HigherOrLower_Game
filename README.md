@@ -4,15 +4,11 @@
 
 ### Todo
 
+-   win screen
+    -   time
 -   stats
-    -   played
-    -   perfect games
-    -   win%
-    -   current streak
-    -   best streak
-    -   timer
+    -   best time
 -   settings
-    -   remember settings
     -   difficulty
         -   lives
         -   time limit
