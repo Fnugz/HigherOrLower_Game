@@ -4,7 +4,6 @@
 	height: 100vh;
 	max-width: var(--game-max-width);
 	margin: 0 auto;
-	padding: 20px 0;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
@@ -334,6 +333,11 @@ header {
 	}
 	.card.flipped {
 		font-size: 36px;
+	}
+}
+@media (max-height: 650px) {
+	.card span {
+		display: none;
 	}
 }
 /* #endregion */
