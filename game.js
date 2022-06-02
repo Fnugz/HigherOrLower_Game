@@ -5,6 +5,7 @@ var lives_left;
 var gameover;
 var current_number = 0;
 var cooldown = false;
+var timer_start;
 
 var settings = {
 	width: 4,
@@ -40,6 +41,8 @@ function newGame(seed = Math.random()) {
 	cards_left = numbers.length;
 	current_number = 0;
 	cooldown = false;
+
+	$(".stats-timetaken").text("-");
 
 	// populate lives
 	var life_html = `
@@ -92,6 +95,8 @@ function newGame(seed = Math.random()) {
 // First pick
 $(document).on("click", ".center.first-pick .card", function () {
 	if (!cooldown) {
+		timer_start = Date.now();
+
 		setTimeout(function () {
 			$(".center").removeClass("first-pick");
 		}, 250);
@@ -159,7 +164,7 @@ $(document).on("click", ".center:not(.first-pick) .card:not(.flipped) div", func
 		} else {
 			card.addClass("wrong");
 			lives_left--;
-			$(".lives .life:not(.lost)").last().addClass("lost").find(".heart").css({ "animation-delay": "" });
+			$(".lives .life").last().addClass("lost").find(".heart").css({ "animation-delay": "" });
 		}
 
 		// Check if gameover
@@ -183,7 +188,26 @@ $(document).on("click", ".center:not(.first-pick) .card:not(.flipped) div", func
 				openModal();
 				$(".btn-stats").trigger("click");
 				$(".modal-stats .modal-title").text("You lost!");
-			}, 1000);
+			}, 1500);
+
+			setTimeout(function () {
+				// Flip remaining cards
+				$(".card:not(.flipped)").each(function () {
+					var c = $(this);
+					var card_index = c.data("index");
+					var card_number = numbers[card_index];
+					c.css({
+						"animation-name": "flipCardRight",
+					});
+					setTimeout(function () {
+						c.addClass("flipped");
+						c.html(card_number);
+					}, 250);
+				});
+			}, 500);
+
+			var timer = Date.now() - timer_start;
+			$(".stats-timetaken").text(msToTime(timer));
 
 			stats.games++;
 			stats.streak = 0;
@@ -195,6 +219,13 @@ $(document).on("click", ".center:not(.first-pick) .card:not(.flipped) div", func
 				$(".btn-stats").trigger("click");
 				$(".modal-stats .modal-title").text("You won!");
 			}, 1000);
+
+			var timer = Date.now() - timer_start;
+			$(".stats-timetaken").text(msToTime(timer));
+
+			if (!stats.besttime || timer < stats.besttime) {
+				stats.besttime = timer;
+			}
 
 			stats.games++;
 			stats.wins++;
@@ -209,6 +240,17 @@ $(document).on("click", ".center:not(.first-pick) .card:not(.flipped) div", func
 		}
 	}
 });
+
+function msToTime(s) {
+	var pad = (n, z = 2) => ("00" + n).slice(-z);
+
+	var ms = s % 1000;
+	s = (s - ms) / 1000;
+	var secs = s % 60;
+	var mins = (s - secs) / 60;
+
+	return pad(mins) + ":" + pad(secs) + "." + pad(ms, 3);
+}
 
 function flipCard(card) {
 	cards_left--;
@@ -274,12 +316,10 @@ function getColIndexArray(col_pos) {
 // Calc sums
 function calcRowSum(row_pos) {
 	var row_numbers = getRowIndexArray(row_pos);
-	// console.log("row: " + row_numbers);
 	return sumArray(row_numbers);
 }
 function calcColSum(col_pos) {
 	var col_numbers = getColIndexArray(col_pos);
-	// console.log("col: " + row_numbers);
 	return sumArray(col_numbers);
 }
 function sumArray(array) {
@@ -331,18 +371,15 @@ $(document).on("click", ".btn-info", function () {
 $(document).on("click", ".btn-stats", function () {
 	openModal();
 	$(".modal-stats .modal-title").text("Statistics");
+	if (stats.besttime) $(".modal-stats .stats-besttime").text(msToTime(stats.besttime));
 	$(".modal-stats .stats-games").text(stats.games);
 	$(".modal-stats .stats-wins").text(stats.wins);
-	$(".modal-stats .stats-winpct").text(((stats.wins / stats.games) * 100).toFixed(1) + "%");
+	if (stats.games) $(".modal-stats .stats-winpct").text(((stats.wins / stats.games) * 100).toFixed(0));
 	$(".modal-stats .stats-perfectgames").text(stats.perfectGames);
 	$(".modal-stats .stats-streak").text(stats.streak);
 	$(".modal-stats .stats-beststreak").text(stats.bestStreak);
 
 	$(".modal-stats").show();
-});
-$(document).on("click", ".btn-settings", function () {
-	openModal();
-	$(".modal-settings").show();
 });
 
 // Modal - Close events
@@ -398,9 +435,9 @@ function saveStats() {
 	localStorage.stats = JSON.stringify(stats);
 }
 
-// Settings menu
-$(document).on("change", "#settings-darkmode", function () {
-	userprefs.darkmode = this.checked;
+// Dark mode
+$(document).on("click", ".btn-darkmode", function () {
+	userprefs.darkmode = !userprefs.darkmode;
 	saveUserprefs();
 	applyDarkmode();
 });
@@ -408,9 +445,11 @@ $(document).on("change", "#settings-darkmode", function () {
 function applyDarkmode() {
 	if (userprefs.darkmode) {
 		$("body").addClass("darkmode");
-		$("#settings-darkmode").prop("checked", true);
+		$(".icon-darkmode").hide();
+		$(".icon-lightmode").show();
 	} else {
 		$("body").removeClass("darkmode");
-		$("#settings-darkmode").prop("checked", false);
+		$(".icon-darkmode").show();
+		$(".icon-lightmode").hide();
 	}
 }

@@ -1,17 +1,5 @@
 # Higher or Lower
 
+Play here: [highlow.fnugz.com](https://highlow.fnugz.com)
+
 ## Work in progress
-
-### Todo
-
--   win screen
-    -   time
--   stats
-    -   best time
--   settings
-    -   difficulty
-        -   lives
-        -   time limit
-        -   show pool
-        -   pool size
-        -   hide sums

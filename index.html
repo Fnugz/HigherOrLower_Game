@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Higher or Lower</title>
+		<title>High Low</title>
 
 		<style>
 			noscript {
@@ -51,31 +51,35 @@
 							<li>Each number appears only once.</li>
 							<li>You have 3 lives.</li>
 						</ul>
-						<span class="credits">Game by <a href="https://twitter.com/Fnugz" target="_blank">Fnugz</a> and <a href="https://twitter.com/RizzToTheIzzle" target="_blank">RZL</a></span>
+					</div>
+
+					<h2 class="modal-title small">About</h2>
+					<div class="modal-text">
+						<span>Game by <a href="https://twitter.com/Fnugz" target="_blank">Fnugz</a> and <a href="https://twitter.com/RizzToTheIzzle" target="_blank">RZL</a></span>
+						<span>Source code on <a href="https://github.com/Fnugz/HigherOrLower_Game" target="_blank">GitHub</a></span>
+						<span>Try out <a href="https://rzl.itch.io/high-low-infinite" target="_blank">High Low Infinite</a></span>
 					</div>
 				</div>
 				<div class="modal-content modal-stats">
 					<h2 class="modal-title">Statistics</h2>
-					<div class="modal-text">
-						<div>Games: <span class="stats-games"></span></div>
-						<div>Wins: <span class="stats-wins"></span></div>
-						<div>Win%: <span class="stats-winpct"></span></div>
-						<div>Perfect Games: <span class="stats-perfectgames"></span></div>
-						<div>Current Streak: <span class="stats-streak"></span></div>
-						<div>Best Streak: <span class="stats-beststreak"></span></div>
-					</div>
-				</div>
-				<div class="modal-content modal-settings">
-					<h2 class="modal-title">Settings</h2>
-					<div class="modal-text">
-						<label for="settings-darkmode">Darkmode <input type="checkbox" name="settings-darkmode" id="settings-darkmode" /></label>
-						<span>Enable cheat ☑</span>
+					<div class="modal-stats">
+						<div class="stats-box"><span class="stats-timetaken">-</span>Time Taken</div>
+						<div class="stats-box"><span class="stats-besttime">-</span>Best Time</div>
+						<div class="break"></div>
+						<div class="stats-box"><span class="stats-games">-</span>Games</div>
+						<div class="stats-box"><span class="stats-wins">-</span>Wins</div>
+						<div class="stats-box"><span class="stats-winpct">-</span>Win %</div>
+						<div class="break"></div>
+						<div class="stats-box"><span class="stats-perfectgames">-</span>Perfect Games</div>
+						<div class="break"></div>
+						<div class="stats-box"><span class="stats-streak">-</span>Current Streak</div>
+						<div class="stats-box"><span class="stats-beststreak">-</span>Best Streak</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="game">
-			<header>Higher or Lower</header>
+			<header>High Low</header>
 			<div class="board-container">
 				<div class="board">
 					<div class="center"></div>
@@ -86,27 +90,31 @@
 					<div class="lives"></div>
 					<div class="menu">
 						<div class="btn-restart">
-							<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-								<path d="M12,5V1L7,6l5,5V7c3.31,0,6,2.69,6,6s-2.69,6-6,6s-6-2.69-6-6H4c0,4.42,3.58,8,8,8s8-3.58,8-8S16.42,5,12,5z" />
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" fill="currentColor">
+								<path
+									d="M20 38.042Q16.625 38.042 13.667 36.792Q10.708 35.542 8.5 33.333Q6.292 31.125 5.042 28.188Q3.792 25.25 3.792 21.875H8.167Q8.167 26.792 11.604 30.229Q15.042 33.667 20 33.667Q24.917 33.667 28.354 30.229Q31.792 26.792 31.792 21.833Q31.792 16.917 28.417 13.479Q25.042 10.042 20.083 10.042H19.375L21.958 12.667L19.667 15L12.458 7.792L19.667 0.583L21.958 2.958L19.25 5.667H19.958Q23.333 5.667 26.292 6.917Q29.25 8.167 31.458 10.375Q33.667 12.583 34.938 15.521Q36.208 18.458 36.208 21.833Q36.208 25.208 34.958 28.167Q33.708 31.125 31.5 33.333Q29.292 35.542 26.333 36.792Q23.375 38.042 20 38.042Z"
+								/>
 							</svg>
 						</div>
 						<div class="btn-info">
-							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-								<path d="M0 0h24v24H0V0z" fill="none" />
-								<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" fill="currentColor">
+								<path
+									d="M20 37.833Q16.25 37.833 12.979 36.458Q9.708 35.083 7.312 32.688Q4.917 30.292 3.542 27.021Q2.167 23.75 2.167 20Q2.167 16.25 3.542 13Q4.917 9.75 7.312 7.333Q9.708 4.917 12.979 3.521Q16.25 2.125 20 2.125Q23.75 2.125 27 3.521Q30.25 4.917 32.667 7.313Q35.083 9.708 36.479 12.958Q37.875 16.208 37.875 20Q37.875 23.75 36.479 27.021Q35.083 30.292 32.667 32.688Q30.25 35.083 27 36.458Q23.75 37.833 20 37.833ZM20 15.875Q20.917 15.875 21.542 15.25Q22.167 14.625 22.167 13.708Q22.167 12.792 21.542 12.167Q20.917 11.542 20 11.542Q19.042 11.542 18.438 12.167Q17.833 12.792 17.833 13.708Q17.833 14.667 18.458 15.271Q19.083 15.875 20 15.875ZM18.167 28.833H22V18.333H18.167Z"
+								/>
 							</svg>
 						</div>
 						<div class="btn-stats">
-							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-								<path d="M0 0h24v24H0V0z" fill="none" />
-								<path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z" />
-							</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" fill="currentColor"><path d="M6.458 33.042V14.208H12.5V33.042ZM17 33.042V7.542H23V33.042ZM27.5 33.042V20.875H33.542V33.042Z" /></svg>
 						</div>
-						<div class="btn-settings">
-							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-								<path d="M0 0h24v24H0V0z" fill="none" />
+						<div class="btn-darkmode">
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" fill="currentColor" class="icon-darkmode">
 								<path
-									d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+									d="M20 35.5Q13.5 35.5 9 31Q4.5 26.5 4.5 20Q4.5 13.542 9 9Q13.5 4.458 20 4.458Q20.333 4.458 20.688 4.458Q21.042 4.458 21.542 4.5Q20.375 5.958 19.708 7.708Q19.042 9.458 19.042 11.375Q19.042 15.375 21.854 18.188Q24.667 21 28.708 21Q30.583 21 32.354 20.396Q34.125 19.792 35.542 18.667Q35.542 19.125 35.542 19.417Q35.542 19.708 35.542 19.958Q35.542 26.417 31 30.958Q26.458 35.5 20 35.5Z"
+								/>
+							</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" fill="currentColor" class="icon-lightmode" style="display: none">
+								<path
+									d="M20 28.333Q16.542 28.333 14.104 25.896Q11.667 23.458 11.667 20Q11.667 16.542 14.104 14.104Q16.542 11.667 20 11.667Q23.458 11.667 25.896 14.104Q28.333 16.542 28.333 20Q28.333 23.458 25.896 25.896Q23.458 28.333 20 28.333ZM3.042 22.167Q2.125 22.167 1.5 21.542Q0.875 20.917 0.875 20Q0.875 19.083 1.5 18.458Q2.125 17.833 3.042 17.833H6.958Q7.875 17.833 8.5 18.458Q9.125 19.083 9.125 20Q9.125 20.917 8.5 21.542Q7.875 22.167 6.958 22.167ZM33.042 22.167Q32.125 22.167 31.5 21.542Q30.875 20.917 30.875 20Q30.875 19.083 31.5 18.458Q32.125 17.833 33.042 17.833H36.958Q37.875 17.833 38.5 18.458Q39.125 19.083 39.125 20Q39.125 20.917 38.5 21.542Q37.875 22.167 36.958 22.167ZM20 9.125Q19.083 9.125 18.458 8.5Q17.833 7.875 17.833 6.958V3.042Q17.833 2.125 18.458 1.5Q19.083 0.875 20 0.875Q20.917 0.875 21.542 1.5Q22.167 2.125 22.167 3.042V6.958Q22.167 7.875 21.542 8.5Q20.917 9.125 20 9.125ZM20 39.125Q19.083 39.125 18.458 38.5Q17.833 37.875 17.833 36.958V33.042Q17.833 32.125 18.458 31.5Q19.083 30.875 20 30.875Q20.917 30.875 21.542 31.5Q22.167 32.125 22.167 33.042V36.958Q22.167 37.875 21.542 38.5Q20.917 39.125 20 39.125ZM9.25 12.333 7.083 10.208Q6.417 9.583 6.438 8.667Q6.458 7.75 7.083 7.083Q7.708 6.417 8.604 6.417Q9.5 6.417 10.167 7.083L12.333 9.25Q12.958 9.875 12.958 10.771Q12.958 11.667 12.333 12.292Q11.708 12.917 10.792 12.938Q9.875 12.958 9.25 12.333ZM29.833 32.917 27.667 30.75Q27.042 30.125 27.042 29.229Q27.042 28.333 27.667 27.708Q28.292 27.042 29.188 27.042Q30.083 27.042 30.75 27.708L32.917 29.792Q33.583 30.417 33.562 31.333Q33.542 32.25 32.917 32.917Q32.292 33.583 31.396 33.583Q30.5 33.583 29.833 32.917ZM27.708 12.333Q27.042 11.708 27.042 10.813Q27.042 9.917 27.708 9.25L29.792 7.083Q30.417 6.417 31.333 6.438Q32.25 6.458 32.917 7.083Q33.583 7.708 33.583 8.604Q33.583 9.5 32.917 10.167L30.75 12.333Q30.125 12.958 29.25 12.958Q28.375 12.958 27.708 12.333ZM7.083 32.917Q6.417 32.292 6.417 31.396Q6.417 30.5 7.083 29.833L9.25 27.667Q9.875 27 10.75 27Q11.625 27 12.292 27.667Q12.958 28.292 12.958 29.188Q12.958 30.083 12.292 30.75L10.208 32.917Q9.583 33.583 8.667 33.562Q7.75 33.542 7.083 32.917Z"
 								/>
 							</svg>
 						</div>

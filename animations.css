@@ -4,7 +4,7 @@
 		background: var(--color-tone-4);
 		border-color: var(--lighter-min);
 	}
-	50.1% {
+	50.001% {
 		background: none;
 		border-color: none;
 	}
@@ -18,7 +18,7 @@
 	50% {
 		transform: rotateX(90deg) scale(1.1);
 	}
-	50.1% {
+	50.001% {
 		transform: rotateX(-90deg) scale(1.1);
 	}
 }
@@ -31,7 +31,7 @@
 	50% {
 		transform: rotateX(-90deg) scale(1.1);
 	}
-	50.1% {
+	50.001% {
 		transform: rotateX(90deg) scale(1.1);
 	}
 }
@@ -44,8 +44,21 @@
 	50% {
 		transform: rotateY(-90deg) scale(1.1);
 	}
-	50.1% {
+	50.001% {
 		transform: rotateY(90deg) scale(1.1);
+	}
+}
+
+@keyframes flipCardRight {
+	0%,
+	100% {
+		transform: rotateY(0deg) scale(1);
+	}
+	50% {
+		transform: rotateY(90deg) scale(1.1);
+	}
+	50.001% {
+		transform: rotateY(-90deg) scale(1.1);
 	}
 }
 
@@ -99,7 +112,7 @@
 
 @keyframes modalFadeIn {
 	0% {
-		opacity: 0.5;
+		opacity: 0;
 		transform: translateY(30px);
 	}
 	100% {
